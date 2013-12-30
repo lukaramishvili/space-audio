@@ -31,6 +31,10 @@ var zMax = 4200;
 setInterval(function(){console.log(stage.objects["arrow"].position);}, 1000);
 
 var leap = zLeap().init(function(frame, prevFrame){
+    //just animate the pyramid for the time being
+    stage.objects["arrow"].rotation.x += 0.04;
+    stage.objects["arrow"].rotation.y += 0.04;
+    stage.objects["arrow"].rotation.z += 0.04;
     if(frame.hands.length > 0 && prevFrame.hands.length > 0){
 	var h1 = frame.hands[0];
 	var ph1 = prevFrame.hands[0];
@@ -44,10 +48,10 @@ var leap = zLeap().init(function(frame, prevFrame){
 		var zDiff = (h1f1.tipPosition[2] - ph1f1.tipPosition[2]) * 15;
 		stage.objects["arrow"].position.y += yDiff;
 		var xFinal = stage.objects["arrow"].position.x + xDiff;
-		xFinal = xFinal > Math.min( Math.max(xFinal, xMin)
+		xFinal = Math.min( Math.max(xFinal, xMin)
 					    , xMax);
 		var zFinal = stage.objects["arrow"].position.z + zDiff;
-		zFinal = zFinal > Math.min( Math.max(zFinal, zMin)
+		zFinal = Math.min( Math.max(zFinal, zMin)
 					    , zMax);
 		stage.objects["arrow"].position.x = xFinal;
 		stage.objects["arrow"].position.z = zFinal;
